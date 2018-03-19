@@ -1,0 +1,31 @@
+{
+  "name": "bulmatador",
+  "version": "1.0.0",
+  "description": "yet another SPA",
+  "main": "index.js",
+  "dependencies": {
+    "browser-sync": "^2.23.6",
+    "bulma": "^0.6.2",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codenamesrk/bulmatador.git"
+  },
+  "keywords": [
+    "bulma"
+  ],
+  "author": "codenamesrk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codenamesrk/bulmatador/issues"
+  },
+  "homepage": "https://github.com/codenamesrk/bulmatador#readme"
+}
