@@ -7,7 +7,7 @@ var sourcemaps = require('gulp-sourcemaps');
 // Asset Paths
 const PATHS = {
     styles: {
-        src: 'app/scss/**/*.scss',
+        src: 'app/sass/styles.sass',
         dest: 'app/assets/styles' 
     },
     scripts: {
