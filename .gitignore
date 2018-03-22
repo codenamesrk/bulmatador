@@ -4,6 +4,9 @@ node_modules/
 #bower
 bower_components/
 
+#dist
+app/dist/
+
 #ide
 *.code-workspace
 *.sublime*

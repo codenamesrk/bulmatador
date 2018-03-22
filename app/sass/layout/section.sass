@@ -1,13 +1,17 @@
-$section-padding: 3rem 1.5rem !default
-$section-padding-medium: 9rem 1.5rem !default
-$section-padding-large: 18rem 1.5rem !default
+$icons-container-mxw: 1152px 
+$icons-panel-bg: #dfdfff
+$highlight-img-margin: 1rem
+$highlight-img-padding: 2rem
 
 .section
-  padding: $section-padding
-  // Responsiveness
-  +desktop
-    // Sizes
-    &.is-medium
-      padding: $section-padding-medium
-    &.is-large
-      padding: $section-padding-large
+  &.icons-panel
+    background: $icons-panel-bg
+    .container
+      max-width: $icons-container-mxw
+  &.highlights
+    .highlight-wrap
+      +tablet
+        padding: 0 $highlight-img-padding
+    img
+      margin: $highlight-img-margin 0
+      max-height: 48px
