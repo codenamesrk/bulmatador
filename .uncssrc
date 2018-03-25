@@ -1,4 +1,0 @@
-{
-  html: ['app/index.html'],
-  ignore: ['.navbar-menu.is-active']
-}
