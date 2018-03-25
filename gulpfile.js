@@ -1,13 +1,14 @@
+var path = require('path');
 var gulp = require('gulp');
+var del = require('del');
+var gulpIf = require('gulp-if');
 var browserSync = require('browser-sync').create();
 var sass = require('gulp-sass');
-var del = require('del');
 var sourcemaps = require('gulp-sourcemaps');
-var path = require('path');
-var cssnano = require('gulp-cssnano');
-var gulpIf = require('gulp-if');
 var postcss = require('gulp-postcss');
 var uncss = require('postcss-uncss');
+var autoprefixer = require('autoprefixer');
+var cssnano = require('cssnano');
 
 // Set Environment Var
 const CODE = {
@@ -21,14 +22,14 @@ const CODE = {
 }
 
 // Autoprefixer
-const supported = [
-    'last 2 versions',
-    'safari >= 8',
-    'ie >= 10',
-    'ff >= 20',
-    'ios 6',
-    'android 4'
-];
+// const supported = [
+//     'last 2 versions',
+//     'safari >= 8',
+//     'ie >= 10',
+//     'ff >= 20',
+//     'ios 6',
+//     'android 4'
+// ];
 
 // Asset Paths
 const PATHS = {
@@ -56,7 +57,9 @@ var plugins = [
     uncss({
         html: ['app/index.html'],
         ignore: ['.navbar-menu.is-active']
-    })
+    }),
+    autoprefixer({browsers: ['last 1 version']}),
+    cssnano()
 ];
 
 // Clean Assets Directory
@@ -98,10 +101,7 @@ function assets(){
 }
 function minifyCSS(){
     return gulp.src(PATHS.styles.dest+'/bulma.css')
-    .pipe(postcss(processors))
-    .pipe(cssnano({
-        autoprefixer: {browsers: supported, add: true}
-    }))
+    .pipe(postcss(plugins))
     .pipe(gulp.dest(PATHS.styles.dist))
 }
 
