@@ -7,6 +7,7 @@ var path = require('path');
 var cssnano = require('gulp-cssnano');
 var gulpIf = require('gulp-if');
 var postcss = require('gulp-postcss');
+var uncss = require('postcss-uncss');
 
 // Set Environment Var
 const CODE = {
@@ -49,7 +50,15 @@ const PATHS = {
         dest: 'app/dist/assets/'
     } 
 };
-  
+
+// PostCSS Plugins
+var plugins = [
+    uncss({
+        html: ['app/index.html'],
+        ignore: ['.navbar-menu.is-active']
+    })
+];
+
 // Clean Assets Directory
 function cleanAssets(){
     return del('./app/assets/styles/**/*');
@@ -89,10 +98,11 @@ function assets(){
 }
 function minifyCSS(){
     return gulp.src(PATHS.styles.dest+'/bulma.css')
-        .pipe(cssnano({
-            autoprefixer: {browsers: supported, add: true}
-        }))
-        .pipe(gulp.dest(PATHS.styles.dist))
+    .pipe(postcss(processors))
+    .pipe(cssnano({
+        autoprefixer: {browsers: supported, add: true}
+    }))
+    .pipe(gulp.dest(PATHS.styles.dist))
 }
 
 // Gulp Tasks
