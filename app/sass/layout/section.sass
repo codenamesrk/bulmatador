@@ -4,10 +4,15 @@ $highlight-img-margin: 1rem
 $highlight-img-padding: 2rem
 
 .section
-  &.icons-panel
+  &.icons-panel,
+  &.icons-content
     background: $icons-panel-bg
+  &.icons-panel
     .container
       max-width: $icons-container-mxw
+    .column.is-one-third-mobile
+      +mobile
+        margin-bottom: 1rem
   &.highlights
     .highlight-wrap
       +tablet
@@ -15,3 +20,5 @@ $highlight-img-padding: 2rem
     img
       margin: $highlight-img-margin 0
       max-height: 48px
+  &.icons-content
+    padding-bottom: 0

@@ -1,5 +1,9 @@
+$navbar-border-color: #ddd
+$navbar-border-thickness: 1px
+
 .navbar
   &.top-bar
+    border-bottom: $navbar-border-thickness solid $navbar-border-color
     .navbar-menu
       .navbar-start
         +desktop
@@ -7,5 +11,11 @@
       .navbar-end
         +desktop
           margin-left: 0
-
+    .navbar-brand
+      .navbar-burger
+        position: absolute
+        left: 0
+      .navbar-item
+        margin-left: auto
+        margin-right: auto
       

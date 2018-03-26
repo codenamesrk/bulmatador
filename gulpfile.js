@@ -12,7 +12,7 @@ var cssnano = require('cssnano');
 
 // Set Environment Var
 const CODE = {
-    environment: 'production',
+    environment: 'development',
     development() {
         return this.environment === 'development';
     },
