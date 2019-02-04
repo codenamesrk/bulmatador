@@ -5,7 +5,7 @@ node_modules/
 bower_components/
 
 #dist
-app/dist/
+
 
 #ide
 *.code-workspace

@@ -1,6 +1,6 @@
 // Main container
 $navigation-menu-height: 52px
-$hero-max-width: 40vw
+$hero-max-width: 50vw
 $newsletter-padding: 5rem
 $newsletter-button-width: 200px
 $newsletter-button-mr: 10px
@@ -8,10 +8,23 @@ $newsletter-button-mb: 1rem
 
 .hero
   &.masthead.is-halfheight
-    // min-height: calc(100vh - #{$navigation-menu-height})
-    min-height: 40vh
+    position: relative
+    min-height: 40vh    
     +tablet
       min-height: 50vh
+    h1
+      font-size: 2rem
+      +tablet
+        font-size: 3.75rem
+    h1,
+    h2
+      +tablet
+        color: $white
+    .masthead-img
+      background: url(https://images.pexels.com/photos/2069/people-sign-traveling-blur.jpg)
+      background-position: center center
+      background-size: cover
+      z-index: -1
   &.masthead,
   &.sign-up
     .hero-body

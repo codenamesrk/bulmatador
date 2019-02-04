@@ -56,7 +56,7 @@ const PATHS = {
 var plugins = [
     uncss({
         html: ['app/index.html'],
-        ignore: ['.navbar-menu.is-active']
+        ignore: ['.navbar-menu.is-active','.navbar-burger span','.navbar-burger.is-active span']
     }),
     autoprefixer({browsers: ['last 1 version']}),
     cssnano()

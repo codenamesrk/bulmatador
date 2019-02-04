@@ -1,18 +1,25 @@
 $icons-container-mxw: 1152px 
-$icons-panel-bg: #dfdfff
+$icons-panel-bg: whitesmoke
 $highlight-img-margin: 1rem
 $highlight-img-padding: 2rem
 
 .section
   &.icons-panel,
   &.icons-content
-    background: $icons-panel-bg
+    +tablet
+      background: $icons-panel-bg
   &.icons-panel
     .container
       max-width: $icons-container-mxw
-    .column.is-one-third-mobile
-      +mobile
-        margin-bottom: 1rem
+    .column
+      &.is-one-third-mobile
+        +mobile
+          margin-bottom: 1rem
+      a
+        display: block
+      a:hover,
+      &.is-active a
+          color: red
   &.highlights
     .highlight-wrap
       +tablet
@@ -22,3 +29,5 @@ $highlight-img-padding: 2rem
       max-height: 48px
   &.icons-content
     padding-bottom: 0
+    +mobile
+      padding-top: 0

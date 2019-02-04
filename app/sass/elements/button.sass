@@ -25,7 +25,8 @@ $button-disabled-opacity: 0.5 !default
 $button-static-color: $grey !default
 $button-static-background-color: $white-ter !default
 $button-static-border-color: $grey-lighter !default
-
+// 
+$button-long-padding: 1.3rem 2.25rem !important
 // The button sizes use mixins so they can be used at different breakpoints
 =button-small
   border-radius: $radius-small
@@ -34,6 +35,9 @@ $button-static-border-color: $grey-lighter !default
   font-size: $size-medium
 =button-large
   font-size: $size-large
+=button-long
+  font-size: $size-xnormal
+  padding: $button-long-padding
 
 .button
   +control
@@ -177,6 +181,8 @@ $button-static-border-color: $grey-lighter !default
     +button-medium
   &.is-large
     +button-large
+  &.is-long
+    +button-long
   // Modifiers
   &[disabled]
     background-color: $button-disabled-background-color
