@@ -231,7 +231,7 @@
                 },
                 startSlider : function(){
                     sliderId = setInterval(function(){
-                        console.log('foo')
+                        // console.log('foo')
                         // if(count < max){
                         //     let id = iconsPanel[count].dataset.id;
                         //     carouselContent.innerHTML = iconContents[id]; 
@@ -244,7 +244,7 @@
                     return sliderId;
                 },
                 stopSlider : function(id){
-                    console.log(id)
+                    // console.log(id)
                     clearInterval(id);
                 }
             };            
@@ -264,11 +264,11 @@
 
             (function(Carousel){
                 let iconContents = [
-                    'First',
+                    'When you’re on top of your money, life is good. We help you effortlessly manage your finances in one place.',
                     'Second',
-                    'Third',
+                    'When you’re on top of your money, life is good. We help you effortlessly manage your finances in one place.',
                     'Fourth',
-                    'Fifth',
+                    'When you’re on top of your money, life is good. We help you effortlessly manage your finances in one place.',
                     'Sixth',
                 ];
                 var $carouselContent = document.getElementById('carousel-content');
@@ -301,10 +301,10 @@
                         } else {
                             count = 0;
                         }
-                   },1000);
+                   },3000);
                }
 
-            //    startCarousel();
+               startCarousel();
 
             })();
 
