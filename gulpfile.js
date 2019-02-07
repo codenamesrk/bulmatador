@@ -9,6 +9,7 @@ var postcss = require('gulp-postcss');
 var uncss = require('postcss-uncss');
 var autoprefixer = require('autoprefixer');
 var cssnano = require('cssnano');
+var cwebp = require('gulp-cwebp');
 
 // Set Environment Var
 const CODE = {
@@ -40,7 +41,7 @@ const PATHS = {
         src: 'app/sass/**/*.sass',
         entry: 'app/sass/bulma.sass',
         dest: 'app/assets/styles',
-        dist: 'app/dist/assets/styles' 
+        dist: 'app/dist/assets/styles',
     },
     html: {
         src: 'app/*.html',
@@ -49,6 +50,11 @@ const PATHS = {
     assets: {
         src: 'app/assets/**/*',
         dest: 'app/dist/assets/'
+    },
+    images: {
+        src: 'app/assets/images/**/*',
+        dest: 'app/dist/assets/images/',
+        webp: 'app/dist/assets/images/webp/' 
     } 
 };
 
@@ -56,7 +62,7 @@ const PATHS = {
 var plugins = [
     uncss({
         html: ['app/index.html'],
-        ignore: ['.navbar-menu.is-active','.navbar-burger span','.navbar-burger.is-active span']
+        ignore: ['.navbar-menu.is-active','.navbar-burger span','.navbar-burger.is-active span','.section.icons-panel .column.is-active a']
     }),
     autoprefixer({browsers: ['last 1 version']}),
     cssnano()
@@ -104,6 +110,11 @@ function minifyCSS(){
     .pipe(postcss(plugins))
     .pipe(gulp.dest(PATHS.styles.dist))
 }
+function exportWebp(){
+    return gulp.src(PATHS.images.src)
+    .pipe(cwebp())
+    .pipe(gulp.dest(PATHS.images.webp))
+}
 
 // Gulp Tasks
 exports.styles = styles;
@@ -121,4 +132,4 @@ var build = gulp.series(cleanAssets,styles,serve);
 gulp.task('default',build);
 
 // Minify Task
-gulp.task('minify',gulp.series(cleanDist,html,assets,styles,minifyCSS))
+gulp.task('minify',gulp.series(cleanDist,html,assets,styles,minifyCSS,exportWebp))

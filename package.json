@@ -4,7 +4,7 @@
   "description": "yet another SPA",
   "main": "index.js",
   "dependencies": {
-    "browser-sync": "^2.23.6",
+    "browser-sync": "^2.26.3",
     "bulma": "^0.6.2",
     "cssnano": "^3.10.0",
     "del": "^3.0.0",
@@ -17,7 +17,9 @@
     "sass-module-importer": "^1.4.0",
     "uncss": "^0.16.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp-cwebp": "^3.0.0"
+  },
   "scripts": {
     "gulp:dev": "NODE_ENV='development' gulp",
     "gulp:prod": "NODE_ENV='production' gulp"

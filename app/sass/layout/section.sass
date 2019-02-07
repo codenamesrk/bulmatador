@@ -17,9 +17,13 @@ $highlight-img-padding: 2rem
           margin-bottom: 1rem
       a
         display: block
-      a:hover,
+      a:hover
+        +touch
+          color: $grey-darker
+        +widescreen
+          color: $danger
       &.is-active a
-          color: red
+          color: $danger          
   &.highlights
     .highlight-wrap
       +tablet

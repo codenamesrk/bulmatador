@@ -20,6 +20,15 @@
             <a class="navbar-item" href="#">
                 <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
             </a>
+            <div class="navbar-end">
+              <div class="navbar-item is-hidden-desktop is-paddingless">
+                <div class="buttons">
+                  <a class="button is-link is-marginless">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </div>
+        </div>
+    </div>            
         </div>
         <div class="navbar-menu is-uppercase has-text-weight-bold" id="navMenu">
             <div class="navbar-start">
@@ -86,7 +95,7 @@
     <section class="section icons-panel">
         <div class="container">
             <div id="icons-panel" class="columns is-spaced-out is-mobile is-multiline">
-                <div data-id="0" class="column is-one-third-mobile is-2-tablet is-1-desktop has-text-centered is-active">
+                <div data-id="0" class="column is-one-third-mobile is-2-tablet is-1-desktop has-text-centered">
                     <a  class="icons">
                         <span class="icon is-bold">
                             <i class="fas fa-camera-retro fa-2x"></i>                        
@@ -147,27 +156,30 @@
                    <div class="highlight-wrap">
                         <h1 class="is-size-4 has-text-weight-bold">Create Budgets Easily</h1>
                         <p>Easily create budgets, and see our suggestions based on your spending.</p>
-                        <figure>
-                            <img src="assets/images/highlights/bills_calender_icon_0.png" alt="" srcset="">
-                        </figure>
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/webp/highlights/bills_calender_icon_0.webp" alt="">
+                            <img src="assets/images/highlights/bills_calender_icon_0.png" alt="">
+                        </picture>
                    </div>
                 </div>
                 <div class="column has-text-centered">
                     <div class="highlight-wrap">
                         <h1 class="is-size-4 has-text-weight-bold">Pay and Track Bills</h1>
                         <p>Track and pay bills like never before. Get alerts and schedule payments on the spot.</p>
-                        <figure>
-                            <img src="assets/images/highlights/budgets-small_3.png" alt="" srcset="">
-                        </figure>
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/webp/highlights/budgets-small_3.webp" alt="">
+                            <img src="assets/images/highlights/budgets-small_3.png" alt="">
+                        </picture>                        
                     </div>
                 </div>
                 <div class="column has-text-centered">
                     <div class="highlight-wrap">
                         <h1 class="is-size-4 has-text-weight-bold">Find out your CIBIL Score</h1>
                         <p>Find out yours for free and get tips to help improve it, no credit card required.</p>
-                        <figure>
-                            <img src="assets/images/highlights/icon-credit-checked-5_3.png" alt="" srcset="">
-                        </figure>
+                        <picture>
+                            <source type="image/webp" srcset="assets/images/webp/highlights/icon-credit-checked-5_3.webp" alt="">
+                            <img src="assets/images/highlights/icon-credit-checked-5_3.png" alt="">
+                        </picture>                         
                     </div>
                 </div>
             </div>    
@@ -208,7 +220,7 @@
                     child.classList.remove('is-active');
                 });
             }
-            Carousel = {
+            window.Carousel = {
                 iconContents : [
                     'First',
                     'Second',
@@ -223,6 +235,8 @@
                 count : 0,
                 max : Array.prototype.slice.call(document.querySelectorAll('.icons-panel .column'), 0).length,
                 sliderId : 0,
+                mouseTouchEvent :  ('ontouchstart' in window) ? 'click' : 'mouseenter',
+
                 clearOldActiveClasses: function(icons){
                     const parent = icons;
                     Array.from(parent.children).map((child, index) => {
@@ -230,25 +244,48 @@
                     });
                 },
                 startSlider : function(){
-                    sliderId = setInterval(function(){
-                        // console.log('foo')
-                        // if(count < max){
-                        //     let id = iconsPanel[count].dataset.id;
-                        //     carouselContent.innerHTML = iconContents[id]; 
-                        //     clearOldActiveClasses(icons);
-                        //     iconsPanel[count++].classList.toggle('is-active');
-                        // } else {
-                        //     count = 0;
-                        // }
-                    },2000);
-                    return sliderId;
+                     Carousel.sliderId = setTimeout(function(){
+                        Carousel.nextSlide();
+                    },3000);                     
+                },
+                nextSlide: function(){
+                    if(Carousel.count < Carousel.max){
+                        let id = Carousel.iconsPanel[Carousel.count].dataset.id;
+                        Carousel.carouselContent.innerHTML = Carousel.iconContents[id]; 
+                        Carousel.clearOldActiveClasses(Carousel.icons);
+                        Carousel.iconsPanel[Carousel.count++].classList.toggle('is-active');
+                           
+                    } else {
+                        Carousel.count = 0;
+                    }
+                        
+                    Carousel.sliderId = setTimeout(function(){
+                        Carousel.nextSlide();
+                    },3000);                     
+
                 },
                 stopSlider : function(id){
-                    // console.log(id)
-                    clearInterval(id);
+                    clearTimeout(Carousel.sliderId);
+                },
+                attachEvents: function(){
+                    if (Carousel.iconsPanel.length > 0) {
+                        Carousel.iconsPanel.forEach(function ($el) {
+                            $el.addEventListener(Carousel.mouseTouchEvent, function (event) {
+                                Carousel.stopSlider(Carousel.sliderId);
+                                let id = $el.dataset.id;
+                                Carousel.carouselContent.innerHTML = Carousel.iconContents[id];
+                                Carousel.count = ++id; 
+                                Carousel.clearOldActiveClasses(Carousel.icons);
+                                $el.classList.toggle('is-active');
+                                //setTimeout(function(){
+                                Carousel.startSlider();
+                                //},3000);                                                    
+                            });                                              
+                        }); 
+                    }
                 }
             };            
-            (function(){               
+            function navbarAttachEvents(){               
                 var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);               
                 if ($navbarBurgers.length > 0) {                    
                     $navbarBurgers.forEach(function ($el) {
@@ -260,56 +297,29 @@
                         });
                     });
                 }
-            })();
-
-            (function(Carousel){
-                let iconContents = [
-                    'When you’re on top of your money, life is good. We help you effortlessly manage your finances in one place.',
-                    'Second',
-                    'When you’re on top of your money, life is good. We help you effortlessly manage your finances in one place.',
-                    'Fourth',
-                    'When you’re on top of your money, life is good. We help you effortlessly manage your finances in one place.',
-                    'Sixth',
-                ];
-                var $carouselContent = document.getElementById('carousel-content');
-                var $iconsPanel = Array.prototype.slice.call(document.querySelectorAll('.icons-panel .column'), 0);
-                var $icons = document.getElementById('icons-panel');   
-                var sliderId = window.Carousel.startSlider();
-               
-                if ($iconsPanel.length > 0) {
-                    $iconsPanel.forEach(function ($el) {
-                        $el.addEventListener('mouseenter', function (event) {
-                            window.Carousel.stopSlider(sliderId);
-                            let id = $el.dataset.id;
-                            $carouselContent.innerHTML = iconContents[id]; 
-                            clearOldActiveClasses($icons);
-                            $el.classList.toggle('is-active');                                                    
-                        });
-                    });
-                }               
-                
-               function startCarousel(parent){
-                   let sliderContents = $iconsPanel;
-                   let count = 0;
-                   let max = $iconsPanel.length;
-                   let slider = setInterval(function(){
-                        if(count < max){
-                            let id = $iconsPanel[count].dataset.id;
-                            $carouselContent.innerHTML = iconContents[id]; 
-                            clearOldActiveClasses($icons);
-                            $iconsPanel[count++].classList.toggle('is-active');
-                        } else {
-                            count = 0;
-                        }
-                   },3000);
-               }
-
-               startCarousel();
-
-            })();
-
-            
+            };
+            navbarAttachEvents();            
+            Carousel.startSlider();
+            Carousel.attachEvents();
         });
     </script>
+<!--     <script type="text/javascript">
+        const myImgs = document.querySelectorAll('.highlights');
+
+        observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.intersectionRatio > 0) {
+              console.log('in the view');
+              //observer.unobserve(entry.target);
+            } else {
+              console.log('out of view');
+            }
+          });
+        });
+
+        myImgs.forEach(image => {
+          observer.observe(image);
+        });
+    </script> -->
 </body>
 </html>
