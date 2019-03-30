@@ -9,6 +9,7 @@ $highlight-img-padding: 2rem
     +tablet
       background: $icons-panel-bg
   &.icons-panel
+    position: relative
     .container
       max-width: $icons-container-mxw
     .column
@@ -23,7 +24,12 @@ $highlight-img-padding: 2rem
         +widescreen
           color: $danger
       &.is-active a
-          color: $danger          
+          color: $danger
+    .scroll-more
+      position: absolute
+      width: 100%
+      left: 0
+      bottom: 0          
   &.highlights
     .highlight-wrap
       +tablet
