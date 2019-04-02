@@ -21,14 +21,14 @@
                 <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
             </a>
             <div class="navbar-end">
-              <div class="navbar-item is-hidden-desktop is-paddingless">
-                <div class="buttons">
-                  <a class="button is-link is-marginless">
-                    <i class="fas fa-shopping-cart"></i>
-                </a>
-            </div>
-        </div>
-    </div>            
+                <div class="navbar-item is-hidden-desktop is-paddingless">
+                    <div class="buttons">
+                        <a class="button is-link is-marginless">
+                            <i class="fas fa-shopping-cart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>            
         </div>
         <div class="navbar-menu is-uppercase has-text-weight-bold" id="navMenu">
             <div class="navbar-start">
@@ -85,12 +85,13 @@
             <div class="columns">
                 <div class="div column has-text-centered">
                     <h2 id="carousel-content" class="carousel-content is-size-6 has-text-weight-bold">
-                        Mint makes staying on top of your finances a cinch. Be the master of your money.
+                        &nbsp;
                     </h2>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Section Icons Panel -->
     <section class="section icons-panel">
         <div class="container">
@@ -145,11 +146,6 @@
                 </div>
 
             </div>
-        </div>
-        <div class="column is-full has-text-centered is-hidden-tablet scroll-more">
-                <span class="icon">
-                    <i class="fas fa-angle-down"></i>
-                </span>
         </div>
     </section>
 
@@ -213,9 +209,25 @@
         </div>
     </section>
 
+    <!-- Scroll More -->
+    <div class="container has-text-centered is-hidden-tablet scroll-more">
+        <span class="icon">
+            <i class="fas fa-angle-down"></i>
+        </span>
+    </div>
+
+    <!-- GDPR Notification -->
+    <div id="gdpr" class="gdpr notification is-marginless has-no-delete">      
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit lorem ipsum dolor tempus.
+      <a id="allow-cookies" class="button is-link is-fullwidth">I agree</a>
+    </div>
+
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            var allowCookiesButton = document.getElementById('allow-cookies');
+            var gdprNotification = document.getElementById('gdpr');
+
             function hasClass(element, cls) {
                 return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
             }
@@ -306,6 +318,10 @@
             navbarAttachEvents();            
             Carousel.startSlider();
             Carousel.attachEvents();
+            allowCookiesButton.addEventListener('click', function(){
+                gdprNotification.classList.add('is-hidden');
+                // Ajax
+            });
         });
     </script>
 <!--     <script type="text/javascript">
