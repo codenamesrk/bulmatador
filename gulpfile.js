@@ -41,7 +41,7 @@ const PATHS = {
         src: 'app/sass/**/*.sass',
         entry: 'app/sass/bulma.sass',
         dest: 'app/assets/styles',
-        dist: 'app/dist/assets/styles',
+        dist: '/dist/assets/styles',
     },
     html: {
         src: 'app/*.html',
